@@ -1,0 +1,5 @@
+.user-table{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 25px;
+}

@@ -1,0 +1,13 @@
+.header{
+    display: flex;
+    padding: 10px 10px 30px 10px;
+    background-color: #212529;
+    font-family:'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(82, 104, 145);
+}
+
+.header_search_block{
+    display: flex;
+}
