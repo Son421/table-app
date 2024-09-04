@@ -14,17 +14,13 @@ interface userState {
     loading: boolean;
     error: string | null;
     searchedUser: user[];
-    searchedText: string;
-    searchType: string;
 }
 
 const initialState: userState = {
     value: [],
     loading: false,
-    error: null,
+    error: null,    
     searchedUser: [],
-    searchedText: '',
-    searchType: 'name',
 }
 
 export const fetchUsers = createAsyncThunk<user[], void>(
@@ -49,32 +45,16 @@ export const usersSlice = createSlice({
     name: 'users',
     initialState, 
     reducers:{
-        setSearchedText(state, action: PayloadAction<string>){
-            state.searchedText = action.payload
-        },
-        setSearchType(state, action: PayloadAction<string>){
-            state.searchType = action.payload
-        },
-        searchByName(state, action: PayloadAction<string>) {
-            state.searchedUser = state.value.filter(user =>
-                user.name.toLowerCase().startsWith(action.payload.toLowerCase())
-            );
-        },
-        searchByUsername(state, action: PayloadAction<string>) {
-            state.searchedUser = state.value.filter(user =>
-                user.username.toLowerCase().startsWith(action.payload.toLowerCase())
-            );
-        },
-        searchByEmail(state, action: PayloadAction<string>) {
-            state.searchedUser = state.value.filter(user =>
-                user.email.toLowerCase().startsWith(action.payload.toLowerCase())
-            );
-        },
-        searchByPhone(state, action: PayloadAction<string>) {
-            state.searchedUser = state.value.filter(user =>
-                user.phone.startsWith(action.payload)
-            );
-        },
+        searchUsers(state, action: PayloadAction<user>) {
+            state.searchedUser = state.value.filter(user => {
+                const correctName = action.payload.name.split('').length !== 0 ? user.name.toLowerCase().startsWith(action.payload.name.toLowerCase()) : true;
+                const correctUsername = action.payload.username.split('').length !== 0 ? user.username.toLowerCase().startsWith(action.payload.username.toLowerCase()) : true;
+                const correctEmail = action.payload.email.split('').length !== 0 ? user.email.toLowerCase().startsWith(action.payload.email.toLowerCase()) : true;
+                const correctPhone = action.payload.phone.split('').length !== 0 ? user.phone.startsWith(action.payload.phone) : true;
+
+                return correctName && correctUsername && correctEmail && correctPhone;
+            });
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -93,7 +73,7 @@ export const usersSlice = createSlice({
     },
 });
 
-export const {searchByEmail, searchByName, searchByPhone, searchByUsername, setSearchType, setSearchedText} = usersSlice.actions;
+export const {searchUsers} = usersSlice.actions;
 
 export const users = (state: RootState) => state.users.value;
 export const searchedUser = (state: RootState) => state.users.searchedUser;

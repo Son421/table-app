@@ -1,5 +1,14 @@
 .user-table{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    font-family:'Poppins', sans-serif;
+    color: #2125298c;
     margin: 25px;
+    border-bottom: 1px dashed #2125293a;
+}
+
+.user-table_visibility{
+    visibility: hidden;
+    position: absolute;
 }

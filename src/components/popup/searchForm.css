@@ -1,0 +1,37 @@
+.search-form{
+    background-color: #212529;
+    padding: 8px;
+    color: aliceblue;
+    font-family:'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    height: 90vh;
+}
+
+.search-form_button{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 2px 14px 10px 14px;
+}
+
+.search-form_button:hover{
+    color: #384047;
+}
+
+.search-form_form{
+    text-align: center;
+    margin: 14px;
+}
+
+.search_input{
+    width: 20vw;
+    border: 1px solid #212529;
+    padding: 8px;
+    border-radius: 15px;
+    font-family: "Open Sans", sans-serif;
+    outline: none;
+    margin: 4px 8px;
+}

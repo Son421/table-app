@@ -13,20 +13,16 @@ export default function UserInfo(props: {user: userInfo}){
     return(
         <div className="user-info">
              <div>
-                <span className="user-info_description"> Name: </span>
-                <span className="user-info_title"> {props.user.name }</span>
+                {props.user.name }
             </div>
             <div>
-                <span className="user-info_description"> Username: </span>
-                <span> {props.user.username }</span>
+                {props.user.username }
             </div>
             <div>
-                <span className="user-info_description"> Email: </span>
-                <span> {props.user.email }</span>
+                {props.user.email }
             </div>
             <div>
-                <span className="user-info_description"> Phone: </span>
-                <span> {props.user.phone }</span>
+                {props.user.phone }
             </div>
         </div>
     );
