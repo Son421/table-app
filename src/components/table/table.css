@@ -8,7 +8,16 @@
     border-bottom: 1px dashed #2125293a;
 }
 
-.user-table_visibility{
-    visibility: hidden;
-    position: absolute;
+.user-table_loading{
+    text-align: center;
+    font-family:'Poppins', sans-serif;
+    color: #212529;
+    font-size: larger;
+}
+
+.user-table_error{
+    text-align: center;
+    font-family:'Poppins', sans-serif;
+    color: #3a0f0f;
+    font-size: larger;
 }

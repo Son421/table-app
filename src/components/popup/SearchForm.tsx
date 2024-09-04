@@ -10,6 +10,7 @@ interface userInfo {
     username: string;
     email: string;
     phone: string;
+    id: number;
 }
 
 export default function SearchForm(){
@@ -20,6 +21,7 @@ export default function SearchForm(){
         username: '',
         email: '',
         phone: '',
+        id: 0,
     })
 
     useEffect(()=>{

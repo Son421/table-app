@@ -7,6 +7,7 @@ interface user {
     username: string;
     email: string;
     phone: string;
+    id: number;
 }
 
 interface userState {
