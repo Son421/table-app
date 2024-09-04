@@ -48,10 +48,19 @@ export const usersSlice = createSlice({
     reducers:{
         searchUsers(state, action: PayloadAction<user>) {
             state.searchedUser = state.value.filter(user => {
-                const correctName = action.payload.name.split('').length !== 0 ? user.name.toLowerCase().includes(action.payload.name.toLowerCase()) : true;
+                const correctName = action.payload.name.split('').length !== 0 ?action.payload.name.toLowerCase().split(' ').every(part => user.name.toLowerCase().split(' ').some(namePart => namePart.startsWith(part))) : true;
+
                 const correctUsername = action.payload.username.split('').length !== 0 ? user.username.toLowerCase().startsWith(action.payload.username.toLowerCase()) : true;
-                const correctEmail = action.payload.email.split('').length !== 0 ? user.email.toLowerCase().includes(action.payload.email.toLowerCase()) : true;
-                const correctPhone = action.payload.phone.split('').length !== 0 ? user.phone.replace(/[^0-9]/g, '').includes(action.payload.phone.replace(/[^0-9]/g, '')) : true;
+
+                const correctEmail = action.payload.email.split('').length !== 0 ? action.payload.email.toLowerCase().split('@').every((part, index) => {
+                    const emailParts = user.email.toLowerCase().split('@'); 
+                    return emailParts[index] && emailParts[index].startsWith(part);
+                }): true;
+
+                const correctPhone = action.payload.phone.split('').length !== 0 ? action.payload.phone.replace(/[^0-9x]/g, '').split('x').every((part, index) => {
+                    const phoneParts = user.phone.replace(/[^0-9x]/g, '').split('x');
+                    return phoneParts[index] && phoneParts[index].startsWith(part);
+                }): true;
 
                 return correctName && correctUsername && correctEmail && correctPhone;
             });
